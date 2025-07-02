@@ -33,10 +33,9 @@ LORA_NAMES = [
 ]
 
 
-# ------------------------- загрузка весов -------------------------
 def fetch_checkpoints() -> None:
-    """Скачиваем SD-чекпойнт, LoRA-файлы и всё нужное для IP-Adapter."""
-    # сами веса адаптера
+    """Качаем IP-Adapter, CLIP-Vision энкодер и LoRA-файлы."""
+    # сам IP-Adapter (≈100 МБ)
     hf_hub_download(
         repo_id="h94/IP-Adapter",
         subfolder="models",
@@ -45,7 +44,7 @@ def fetch_checkpoints() -> None:
         local_dir_use_symlinks=False,
     )
 
-    # обязательный CLIP-Vision энкодер ─ без него load_ip_adapter упадёт
+    # CLIP-Vision энкодер: config + веса
     hf_hub_download(
         repo_id="h94/IP-Adapter",
         subfolder="models/image_encoder",
@@ -53,15 +52,15 @@ def fetch_checkpoints() -> None:
         local_dir="./ip_adapter",
         local_dir_use_symlinks=False,
     )
-    hf_hub_download(
+    hf_hub_download(                           # ← правильное имя файла!
         repo_id="h94/IP-Adapter",
         subfolder="models/image_encoder",
-        filename="model.fp16.safetensors",
+        filename="model.safetensors",
         local_dir="./ip_adapter",
         local_dir_use_symlinks=False,
     )
 
-    # все ваши LoRA-файлы
+    # все LoRA-файлы
     for fname in LORA_NAMES:
         hf_hub_download(
             repo_id="sintecs/interior",
