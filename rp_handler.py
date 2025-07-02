@@ -253,7 +253,7 @@ def handler(job: Dict[str, Any]) -> Dict[str, Any]:
         image_url: Optional[str] = payload.get("image_url")
         ip_adapter_image_url: Optional[str] = payload.get("ip_adapter_image_url", None)
 
-        if not image_url or ip_adapter_image_url:
+        if not image_url or not ip_adapter_image_url:
             return {"error": "'image_url' is required"}
         prompt = payload.get("prompt")
         if not prompt:
