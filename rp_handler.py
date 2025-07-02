@@ -319,9 +319,8 @@ def handler(job: Dict[str, Any]) -> Dict[str, Any]:
         mlsd_img = mlsd_processor(input_image)
         mlsd_img = mlsd_img.resize(image.size)
 
-
         PIPELINE.set_ip_adapter_scale(ip_scale)
-        
+
         # ------------------- generation -------------------- #
         images = PIPELINE(
             prompt=prompt,
