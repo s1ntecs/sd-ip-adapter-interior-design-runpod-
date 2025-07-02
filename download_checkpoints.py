@@ -73,6 +73,12 @@ def get_pipeline():
         pipe.scheduler.config
     )
 
+    pipe.load_ip_adapter(
+        "./ip_adapter",
+        subfolder="models",
+        weight_name="ip-adapter_sd15.bin",
+    )
+
     # pipe.enable_xformers_memory_efficient_attention()
     # pipe = pipe.to(DEVICE)
     AutoImageProcessor.from_pretrained(

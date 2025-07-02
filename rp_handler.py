@@ -106,7 +106,7 @@ PIPELINE.scheduler = UniPCMultistepScheduler.from_config(
 PIPELINE.enable_xformers_memory_efficient_attention()
 PIPELINE.to(DEVICE)
 PIPELINE.load_ip_adapter(
-    pretrained_model_name_or_path="./ip_adapter",
+    "./ip_adapter",
     subfolder="models",
     weight_name="ip-adapter_sd15.bin",
 )
