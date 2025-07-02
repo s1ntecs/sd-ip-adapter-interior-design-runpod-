@@ -1,0 +1,1 @@
+# sd-ip-adapter-interior-design-runpod-
